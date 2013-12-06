@@ -1,0 +1,22 @@
+Funktioniert ueber die build.xml, mithilfe von ant.
+
+Kompilieren der Source files:
+ant compile
+
+bin Ordner leeren/loeschen:
+ant clean
+
+Javadoc erstellen:
+ant create-doc
+
+Javadoc loeschen:
+ant clean-doc
+
+Loescht und kompiliert das Projekt neu (javadoc wird dabei nicht erstellt!):
+ant rebuild
+
+Ausführung des Servers:
+ant run-server -Dport=PORT
+
+Ausführung des Clients:
+ant run-client -Dip=IP_ADRESSE -Dport=PORT -DpiLength=PI_LAENGE
