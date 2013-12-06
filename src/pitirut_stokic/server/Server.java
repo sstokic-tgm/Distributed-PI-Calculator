@@ -20,6 +20,12 @@ public class Server implements Compute {
 
 	public static void main(String[] args) {
 
+		if(args[0] == null) {
+
+			System.out.println("No arguments!");
+			System.exit(-1);
+		}
+
 		if (System.getSecurityManager() == null) {
 			System.setProperty("java.security.policy", "file:./policy/pi.policy");
 			System.setSecurityManager(new SecurityManager());
@@ -28,13 +34,13 @@ public class Server implements Compute {
 		try {
 			//LocateRegistry.getRegistry().unbind(name);
 			Compute engine = new Server();
-			
+
 			Compute stub = (Compute) UnicastRemoteObject.exportObject(engine, 0);
-			Registry registry = LocateRegistry.createRegistry(1099);
+			Registry registry = LocateRegistry.createRegistry(Integer.parseInt(args[0]));
 			registry.rebind(name, stub);
 			System.out.println("Server bound");
 
-			
+
 
 		} catch (Exception e) {
 
