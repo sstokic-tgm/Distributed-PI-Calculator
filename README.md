@@ -3,7 +3,7 @@ Als Dienst soll hier die beliebig genaue Bestimmung von pi betrachtet werden. De
 // Calculator.java
 
 public interface Calculator {	
-	public BigDecimal pi (int anzahl_nachkommastellen);	
+	public BigDecimal pi (int anzahl_nachkommastellen);		
 }
 
 
