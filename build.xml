@@ -28,28 +28,29 @@
 		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}" />
 	</target>
 	
-	<!-- Javadoc löschen -->
+	<!-- Javadoc loeschen -->
 	<target name="clean-doc" description="Delete javadoc.">
 		<delete dir="${doc.dir}"/>
 	</target>
 	
-	<!-- Loescht und compiliert das Projekt neu -->
+	<!-- Loescht und kompiliert das Projekt neu -->
 	<target name="rebuild" depends="clean, compile" description="Clean and build products." />
 	
 	<!-- Den Server starten -->
 	<target name="run-server">
         <java classname="pitirut_stokic.server.Server" failonerror="true" fork="yes" description="Run server">
             <classpath refid="PI Calculator.classpath"/>
+			<arg value="${port}" />
         </java>
     </target>
 	
 	<!-- Den Client starten -->
     <target name="run-client">
         <java classname="pitirut_stokic.client.Client" failonerror="true" fork="yes" description="Run client">
-            <!--<arg line="127.0.0.1 55"/>-->
             <classpath refid="PI Calculator.classpath"/>
-			<arg value = "${ip}" />
-			<arg value = "${piLength}" />
+			<arg value="${ip}" />
+			<arg value="${port}" />
+			<arg value="${piLength}" />
         </java>
     </target>
 </project>
