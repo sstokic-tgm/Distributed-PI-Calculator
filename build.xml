@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<project name="PI Calculator" default="compile" basedir=".">
+
+	
+	<property name="src.dir" value="src" />
+	<property name="build.dir" value="bin" />
+	<property name="lib.dir" value="lib" />
+	<property name="doc.dir" value="doc" />
+	
+	<!-- Pfad setzen -->
+	<path id="PI Calculator.classpath">
+        <pathelement location="${build.dir}"/>
+    </path>
+	
+	<!-- Source files kompilieren -->
+	<target name="compile" description="Compile project.">
+		<mkdir dir="${build.dir}" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="PI Calculator.classpath" debug="true" deprecation="true" includeantruntime="false" />
+	</target>
+	
+	<!-- bin Ordner leeren/loeschen -->
+	<target name="clean" description="Clean build products.">
+		<delete dir="${build.dir}" />
+	</target>
+	
+	<!-- Javadoc erstellen -->
+	<target name="create-doc" description="Create javadoc.">
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}" />
+	</target>
+	
+	<!-- Javadoc löschen -->
+	<target name="clean-doc" description="Delete javadoc.">
+		<delete dir="${doc.dir}"/>
+	</target>
+	
+	<!-- Loescht und compiliert das Projekt neu -->
+	<target name="rebuild" depends="clean, compile" description="Clean and build products." />
+	
+	<!-- Den Server starten -->
+	<target name="run-server">
+        <java classname="pitirut_stokic.server.Server" failonerror="true" fork="yes" description="Run server">
+            <classpath refid="PI Calculator.classpath"/>
+        </java>
+    </target>
+	
+	<!-- Den Client starten -->
+    <target name="run-client">
+        <java classname="pitirut_stokic.client.Client" failonerror="true" fork="yes" description="Run client">
+            <!--<arg line="127.0.0.1 55"/>-->
+            <classpath refid="PI Calculator.classpath"/>
+			<arg value = "${ip}" />
+			<arg value = "${piLength}" />
+        </java>
+    </target>
+</project>
